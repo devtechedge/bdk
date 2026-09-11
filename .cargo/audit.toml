@@ -1,0 +1,21 @@
+# cargo-audit configuration, read from .cargo/audit.toml by the Audit workflow.
+# Cargo.lock is regenerated from Cargo.toml on every run, so advisories have to
+# be resolved in the dependency manifests. Each ignore entry documents why it
+# cannot be fixed today and the upstream tracking issue.
+
+[advisories]
+ignore = [
+    # rustls-webpki 0.101.7 has no patched release in the 0.101 line; the fix
+    # (0.103.12+) is semver-incompatible. The old version comes from
+    # minreq 2.14.1 (latest 2.x, via esplora-client and jsonrpc), which still
+    # pins rustls 0.21. Tracked upstream in bitcoindevkit/bdk#2212 and #2213.
+    "RUSTSEC-2026-0098",
+    "RUSTSEC-2026-0099",
+    # Same rustls-webpki 0.101.7 chain as above; fix is 0.103.13+.
+    # Tracked upstream in bitcoindevkit/bdk#2214.
+    "RUSTSEC-2026-0104",
+    # bincode 1.3.3 is unmaintained and will never have a patched release.
+    # It is a direct dependency of bdk_file_store; migrating away is an
+    # upstream decision. Tracked upstream in bitcoindevkit/bdk#2215.
+    "RUSTSEC-2025-0141",
+]

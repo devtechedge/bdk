@@ -28,3 +28,8 @@ jobs:
           persist-credentials: false
       - uses: actions-rust-lang/audit@v1
         name: Audit Rust Dependencies
+        with:
+          # This fork has issues disabled, so the default create-issues
+          # expression (true on master) would always fail. Advisory findings
+          # are still surfaced by the step summary and the job status.
+          create-issues: false
